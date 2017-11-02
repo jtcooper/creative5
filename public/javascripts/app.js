@@ -2,9 +2,6 @@
 
 var app = angular.module('app', ['ui.router']);
 
-app.factory('userList', userList);
-app.controller('mainCtrl', mainCtrl);
-// app.controller('pageCtrl', pageCtrl);
 app.config([
     '$stateProvider',
     '$urlRouterProvider',
@@ -13,15 +10,18 @@ app.config([
 	    .state('home', {
 	        url: '/home',
 	        templateUrl: '/home.html',
-	        controller: 'mainCtrl' });  
-	    // .state('user', {
-		   //  url: '/user/{id}',
-		   //  templateUrl: '/user.html',
-		   //  controller: 'pageCtrl'
-	    // });
+	        controller: 'mainCtrl' })
+	    .state('user', {
+		    url: '/user/{id}',
+		    templateUrl: '/user.html',
+		    controller: 'pageCtrl'
+	    });
 	    $urlRouterProvider.otherwise('home');
 	}
-]);
+])
+.factory('userList', userList)
+.controller('mainCtrl', mainCtrl)
+.controller('pageCtrl', pageCtrl);
 
 function userList($http) {
 	var API_ROOT = 'getusers';
@@ -49,6 +49,6 @@ function mainCtrl($scope, userList) {
 		//
 	}
 }
-// function pageCtrl($scope, userList) {
-// 	//
-// }
+function pageCtrl($scope, userList) {
+	//
+}

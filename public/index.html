@@ -3,39 +3,42 @@
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 	<script src="https://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<script src="javascripts/app.js"></script>
 	<meta charset="utf-8">
 	<title>Creative 4</title>
 </head>
 <body ng-app="app" ng-controller="mainCtrl">
 
-  <script type="text/ng-template" id="/home.html">
-    <div id="mainPage">
-    	<h1>Welcome to ...!</h1>
-	    <h3>Your favorite social media platform</h3>
-	      
-	    <form ng-submit="createUser()">
-	        <input type="text" ng-model="name">Username</input>
-	        <input type = "color" ng-model="bgColor">Background Color</input>
-	        <input type = "text" ng-model="profileImg">Image URL</input>
-	        <input type = "text" ng-model="interests">About Yourself</input>
-	        <button type="submit">Create</button>
-	    </form>
+	<ui-view></ui-view>
 
-	    <div ng-repeat="user in users">
-	        <span class="glyphicon glyphicon-user"></span> 
-	        {{user.name}}
-	        <a href="#/users/{{users.indexOf(user)}}">Explore</a>
+  	<script type="text/ng-template" id="/home.html">
+	    <div id="mainPage">
+	    	<h1>Welcome to ...!</h1>
+		    <h3>Your favorite social media platform</h3>
+		      
+		    <form ng-submit="createUser()">
+		        <input type="text" ng-model="name">Username</input>
+		        <input type = "color" ng-model="bgColor">Background Color</input>
+		        <input type = "text" ng-model="profileImg">Image URL</input>
+		        <input type = "text" ng-model="interests">About Yourself</input>
+		        <button type="submit">Create</button>
+		    </form>
+
+		    <div ng-repeat="user in users">
+		        <span class="glyphicon glyphicon-user"></span> 
+		        {{user.name}}
+		        <a href="#/users/{{users.indexOf(user)}}">Explore</a>
+		    </div>
 	    </div>
-    </div>
-  </script>
+  	</script>
   
-  <!-- <script type ="text/ng-template" id="/user.html">
+  <script type ="text/ng-template" id="/user.html">
     <div id = "indPage">
       <p>test</p>
 
     </div>
-  </script> -->
+  </script>
 	
 	
 </body>
