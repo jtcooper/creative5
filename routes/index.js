@@ -12,7 +12,6 @@ router.get('/', function(req, res, next) {
 
 router.get('/getusers', function(req, res) {
 	// return a JSON object list of users
-	console.log(users);
 	res.send(users);
 });
 
