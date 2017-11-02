@@ -2,35 +2,36 @@
 <html>
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="javascripts/app.js"></script>
 	<meta charset="utf-8">
 	<title>Creative 4</title>
 </head>
 <body ng-app="app" ng-controller="mainCtrl">
 
-  <script type = "text/ng-template" id="/mainPage.html">
-    <div id ="mainPage">
-   
+  <script type="text/ng-template" id="/home.html">
+    <div id="mainPage">
+    	<h1>Welcome to ...!</h1>
+	    <h3>Your favorite social media platform</h3>
+	      
+	    <form ng-submit="createUser()">
+	        <input type="text" ng-model="name">Username</input>
+	        <input type = "color" ng-model="backgroundColor">Background Color</input>
+	        <input type = "text" ng-model="imageUrl">Image URL</input>
+	        <input type = "text" ng-model="aboutYourself">About Yourself</input>
+	        <button type="submit">Create</button>
+	    </form>
+
+	    <div ng-repeat="user in users">
+	        <span class="pageList"></span> 
+	        {{user.name}}
+	        <a href="#/pages/{{users.indexOf(user)}}">Explore</a>
+	    </div>
     </div>
   </script>
   
-  <script type ="text/ng-template" id="/indPage.html">
+  <script type ="text/ng-template" id="/user.html">
     <div id = "indPage">
-      <h1>Welcome to ...!</h1>
-      <h3>Your favorite social media platform</h3>
       
-      <form ng-submit="createPage()">
-        <input type="text" ng-model="userName">Username</input>
-        <input type = "color" ng-model="backgroundColor">Background Color</input>
-        <input type = "text" ng-model="imageUrl">Image URL</input>
-        <input type = "text" ng-model="aboutYourself">About Yourself</input>
-        <button type="submit">Create</button>
-      </form>
-
-      <div ng-repeat="page in pages">
-        <span class="pageList"></span> 
-         {{page.userName}}
-        <a href="#/pages/{{pages.indexOf(page)}}">Explore</a>
-      </div>
 
     </div>
   </script>
