@@ -37,17 +37,31 @@ function userList($http) {
 		}
 	};
 }
-function mainCtrl($scope, userList) {
+function mainCtrl($scope, userList, $http) {
 	$scope.users = [];
 	console.log("in mainCtrl");
+	getUsers();
 	
-	userList.get()
-	.then(function (data) {
-		$scope.users = data;
-	});
-	$scope.createUser = function() {
-		//
+	function getUsers() {
+			userList.get()
+		.then(function (data) {
+			$scope.users = data;
+		});
 	}
+	$scope.createUser = function() {
+		var formData = {name:$scope.name, bgColor:$scope.bgColor, profileImg:$scope.profileImg, interests:$scope.interests};
+		$http({
+			url: 'getusers',
+			method: 'POST',
+			data: formData
+		}).then(function(data, status) {
+			console.log("User created");
+			getUsers();
+		}, 
+		[function(data, status) {
+			console.log("Failed to create");
+		}]);
+	};
 }
 function pageCtrl($scope, userList) {
 	//
