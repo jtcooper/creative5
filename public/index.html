@@ -14,28 +14,45 @@
 	<ui-view></ui-view>
 
   	<script type="text/ng-template" id="/home.html">
-	    <div id="mainPage">
-	    	<h1>Welcome to ...!</h1>
-		    <h3>Your favorite social media platform</h3>
-		      
-		    <form ng-submit="createUser()">
-                        Username: 
-		        <input type="text" ng-model="name">	</input>
-		        Background Color: 
-                        <input type = "color" ng-model="bgColor">	</input>
-		        Image URL: 
-                        <input type = "text" ng-model="profileImg">	</input>
-		        About Yourself: 
-                        <input type = "text" ng-model="interests">	</input>
-			<button type="submit">Create</button>
-		    </form>
+  		<div class="container-fluid">
+	  		<div class="page-header">
+	  			<br>
+	        	<h1>Welcome to Creative Lab</h1>
+			    <h3>Your favorite social media platform</h3>
+	      	</div>
+	  		<div class="col-md-10 col-md-offset-1">
+	  			<div class="jumbotron">
+	  				<h2>Create User</h2>
+	  				<br>
+				    <form ng-submit="createUser()">
+		                <p><input type="text" ng-model="name" placeholder="Username"></input></p>
+				        <p>
+				        	Background color <input type="color" ng-model="bgColor"></input>
+				        </p>
+		                <p><input type = "text" ng-model="profileImg" placeholder="Image URL"></input></p>
+		                <p><input type = "text" ng-model="interests" placeholder="About Yourself"></input></p>
+				        <button type="submit" class="btn btn-success btn-lg">Create</button>
+				    </form>
+				</div>
 
-		    <div ng-repeat="user in users">
-		        <span class="glyphicon glyphicon-user"></span> 
-		        {{user.name}}
-		        <a href="#/user/{{users.indexOf(user)}}">Explore</a>
+				<h1>Users</h1>
+			    <div ng-repeat="user in users">
+			    	<div class="alert row" style="background-color:{{user.bgColor}}">
+			    		<div class="col-md-3">
+			    			<a href="#/user/{{users.indexOf(user)}}">
+			    				<img class="img-thumbnail img-responsive" src="{{user.profileImg}}">
+			    			</a>
+			    		</div>
+			    		<div class="col-md-9">
+					        <a class="btn btn-default btn-lg" href="#/user/{{users.indexOf(user)}}">
+					        	<span class="glyphicon glyphicon-user"></span>
+					        	{{user.name}}
+					        </a>
+					    </div>
+				    </div>
+			    </div>
 		    </div>
-	    </div>
+		</div>
   	</script>
   
   <script type ="text/ng-template" id="/user.html">
