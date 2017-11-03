@@ -3,7 +3,7 @@ var router = express.Router();
 
 
 // name, profileImg, bgColor (6 digit hexadecimal value), interests
-var users = [{name: "Bob", profileImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGgfEcu0eBLQZBhs_COrSRa_F4uixbP0dRCB33_o245ig6tLhb", bgColor: "FF0000", interests: "likes bananas"}];
+var users = [{name: "Bob", profileImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGgfEcu0eBLQZBhs_COrSRa_F4uixbP0dRCB33_o245ig6tLhb", bgColor: "#FF0000", interests: "likes bananas"}];
 /* GET home page. */
 router.get('/', function(req, res, next) {
   //res.render('index', { title: 'Express' });
