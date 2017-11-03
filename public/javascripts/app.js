@@ -8,7 +8,6 @@ angular.module('app', ['ui.router'])
             var API_ROOT = 'getusers';
             console.log("in userList");
             return {
-                    users: [],
                     get: function() {
                             return $http
                             .get(API_ROOT)
@@ -76,7 +75,14 @@ angular.module('app', ['ui.router'])
 	'userList',
 	'$stateParams',
 	function($scope, userList,$stateParams) {
-            $scope.user = userList.users[$stateParams.id];
+            getUsers();
 
+            function getUsers() {
+                userList.get()
+                .then(function (data) {
+                        $scope.user = data[$stateParams.id];
+                });
+            }
+            
 }]);
 
