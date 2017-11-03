@@ -55,6 +55,7 @@ angular.module('app', ['ui.router'])
                 });
             }
             $scope.createUser = function() {
+                if ($scope.name === '') { return; }
                 var formData = {name:$scope.name, bgColor:$scope.bgColor, profileImg:$scope.profileImg, interests:$scope.interests};
                 $http({
                         url: 'getusers',
@@ -62,6 +63,9 @@ angular.module('app', ['ui.router'])
                         data: formData
                 }).then(function(data, status) {
                         console.log("User created");
+                        $scope.name = '';
+                        $scope.profileImg = '';
+                        $scope.interests = '';
                         getUsers();
                 },
                 [function(data, status) {
@@ -83,6 +87,5 @@ angular.module('app', ['ui.router'])
                         $scope.user = data[$stateParams.id];
                 });
             }
-            
 }]);
 
