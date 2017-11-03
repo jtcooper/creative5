@@ -8,11 +8,13 @@ angular.module('app', ['ui.router'])
             var API_ROOT = 'getusers';
             console.log("in userList");
             return {
+                    users: [],
                     get: function() {
                             return $http
                             .get(API_ROOT)
                             .then(function (resp) {
                                     console.log(resp.data);
+                                    users = resp.data;
                                     return resp.data;
                             })
                     }
@@ -30,12 +32,11 @@ angular.module('app', ['ui.router'])
 	        controller: 'mainCtrl' 
 	    })
 	    .state('users', {
-		    url: '/users/{id}',
+		    url: '/user/{id}',
 		    templateUrl: '/user.html',
 		    controller: 'pageCtrl'
 	    });
 	    $urlRouterProvider.otherwise('home');
-//            $qProvider.errorOnUnhandledRejections(false);
 	}
 
 ])
@@ -75,7 +76,7 @@ angular.module('app', ['ui.router'])
 	'userList',
 	'$stateParams',
 	function($scope, userList,$stateParams) {
-            $scope.users = userList.users[$stateParams.id];
+            $scope.user = userList.users[$stateParams.id];
 
 }]);
 
