@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
 	<script src="https://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link href="style.css" rel="stylesheet" type="text/css"></link>
 	<script src="javascripts/app.js"></script>
 	<meta charset="utf-8">
 	<title>Creative 4</title>
@@ -26,7 +27,7 @@
                         <input type = "text" ng-model="profileImg">	</input>
 		        About Yourself: 
                         <input type = "text" ng-model="interests">	</input>
-		        <button type="submit">Create</button>
+			<button type="submit">Create</button>
 		    </form>
 
 		    <div ng-repeat="user in users">
@@ -38,11 +39,25 @@
   	</script>
   
   <script type ="text/ng-template" id="/user.html">
-    <div id = "indPage">
-      <p>test</p>
-
+    <div id = "userPage" style="background-color:{{user.bgColor}};">
+	<p id="userName"> {{user.name}}
+	<br>
+	<img id="userImg" src="{{user.profileImg}}">
+	<br>
+        <p id ="userInterests"> {{user.interests}} </p>
+	<br><br>
+	<div id="button">
+	    <button id="backBtn" onclick="goBack()">Go back</button>
+	</div>	
+<br><br><br>
     </div>
   </script>
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
 
 </body>
 </html>
