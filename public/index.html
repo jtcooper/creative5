@@ -17,11 +17,26 @@
   		<div class="container-fluid">
 	  		<div class="page-header">
 	  			<br>
-	        	<h1>Welcome to Creative Lab</h1>
-			    <h3>Your favorite social media platform</h3>
+	  			<div class="row">
+	  				<div class="col-md-8">
+			        	<h1>Welcome to Creative Lab</h1>
+					    <h3>Your favorite social media platform</h3>
+					</div>
+					<div class="col-md-4 text-right" >
+						<span ng-show="currentUser === undefined">
+							<input type="text" ng-model="username" placeholder="Username">
+							<button class="btn" ng-click="login()">Login</button>
+						</span>
+						<span ng-show="currentUser !== undefined">
+							<span>Logged in as {{ users[currentUser].name }}</span>
+							<button class="btn" ng-click="logout()">Logout</button>
+						</span>
+						<a class="btn btn-default" href="#/create">New User</a>
+					</div>
+				</div>
 	      	</div>
 	  		<div class="col-md-10 col-md-offset-1">
-	  			<div class="jumbotron">
+	  			<!-- <div class="jumbotron">
 	  				<h2>Create User</h2>
 	  				<br>
 				    <form ng-submit="createUser()">
@@ -29,11 +44,11 @@
 				        <p>
 				        	Background color <input type="color" ng-model="bgColor"></input>
 				        </p>
-		                <p><input type = "text" ng-model="profileImg" placeholder="Image URL"></input></p>
-		                <p><input type = "text" ng-model="interests" placeholder="About Yourself"></input></p>
+		                <p><input type="text" ng-model="profileImg" placeholder="Image URL"></input></p>
+		                <p><input type="text" ng-model="interests" placeholder="About Yourself"></input></p>
 				        <button type="submit" class="btn btn-success btn-lg">Create</button>
 				    </form>
-				</div>
+				</div> -->
 
 				<h1>Users</h1>
 			    <div ng-repeat="user in users">
@@ -55,26 +70,56 @@
 		</div>
   	</script>
   
-  <script type ="text/ng-template" id="/user.html">
-    <div id = "userPage" style="background-color:{{user.bgColor}};">
-	<p id="userName"> {{user.name}}
-	<br>
-	<img id="userImg" src="{{user.profileImg}}">
-	<br>
-        <p id ="userInterests"> {{user.interests}} </p>
-	<br><br>
-	<div id="button">
-	    <button id="backBtn" onclick="goBack()">Go back</button>
-	</div>	
-<br><br><br>
-    </div>
-  </script>
+  	<script type="text/ng-template" id="/user.html">
+	    <div class="container-fluid">
+	    	<div class="row" style="background-color:{{user.bgColor}};padding:10px">
+	    		<br><br><br><br>
+	    		<a class="btn btn-default" href="#/home">Back</a>
+	    	</div>
+	    	<br>
+	    	<div class="row">
+	    		<div class="col-md-3" style="background-color:lightgrey;padding-top:10px;height:100vh;">
+	    			<img class="img-thumbnail img-responsive" src="{{user.profileImg}}">
+	    			<h2>{{user.name}}</h2>
+	    			<br>
+	    			<h4>{{user.interests}}</h4>
+	    		</div>
+	    		<div class="col-md-9">
+	    			<!-- posts -->
+	    		</div>
+	    	</div>
+	    </div>
+  	</script>
 
-<script>
-function goBack() {
-    window.history.back();
-}
-</script>
+  	<script type="text/ng-template" id="/create.html">
+  		<div class="container-fluid">
+	  		<div class="page-header">
+	  			<a class="btn btn-default" href="#/home">Home</a>
+	  			<br>
+	  			<h1>New User</h1>
+	  		</div>
+	  		<div class="col-md-10 col-md-offset-1">
+	  			<div class="jumbotron">
+	  				<h2>Create User</h2>
+	  				<br>
+				    <form ng-submit="createUser()">
+		                <p><input type="text" ng-model="name" placeholder="Username"></input></p>
+				        <p>
+				        	Background color <input type="color" ng-model="bgColor"></input>
+				        </p>
+		                <p><input type="text" ng-model="profileImg" placeholder="Image URL"></input></p>
+		                <p><input type="text" ng-model="interests" placeholder="About Yourself"></input></p>
+				        <button type="submit" class="btn btn-success btn-lg">Create</button>
+				    </form>
+				</div>
+			</div>
+  	</script>
+
+	<script>
+		function goBack() {
+		    window.history.back();
+		}
+	</script>
 
 </body>
 </html>
