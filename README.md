@@ -2,9 +2,13 @@
 Implement:
 
 Login to a user to make posts and profile changes
+
 Newsfeed
+
 Add MongoDB connection
+
 Follow users so you only see certain posts
+
 See a user's posts when you click on their profile
 
 Database entries:
