@@ -14,3 +14,4 @@ UserSchema.methods.newPost = function(body, cb) {
   this.save(cb);
 };
 mongoose.model('User', UserSchema);
+//
