@@ -1,6 +1,8 @@
 // javacript file for app
 
-angular.module('app', ['ui.router'])
+
+
+var app = angular.module('app', ['ui.router'])
 
 .factory('userList', [
     '$http',
@@ -106,7 +108,8 @@ angular.module('app', ['ui.router'])
 	'$scope',
 	'userList',
 	'$stateParams',
-	function($scope, userList, $stateParams) {
+	'$http',
+	function($scope, userList, $stateParams, $http) {
         getUsers();
         function getUsers() {
             userList.get()
@@ -114,7 +117,50 @@ angular.module('app', ['ui.router'])
                 $scope.user = data[$stateParams.id];
                 console.log("user id:" + $stateParams.id);
             });
+
         }
+
+
+$scope.addComment = function() {
+     if($scope.formContent === '') { return; }
+      console.log("In addComment with "+$scope.formContent);
+	$http.put('/getusers/' + user._id + '/post')
+      $scope.create({
+        title: $scope.formContent,
+      });
+      $scope.formContent = '';
+   };
+
+$scope.post = function(user) {
+      return $http.put('/getusers/' + user._id + '/post')
+        .success(function(data){
+          console.log("post worked");
+        });
+    };
+
+
+   $scope.delete = function(user) {
+      $http.delete('/getusers/' + user._id )
+        .success(function(data){
+          console.log("delete worked");
+        });
+      $scope.getAll();
+    };
+
+   $scope.create = function(user) {
+    return $http.post('/getusers', user).success(function(data){
+      $scope.getusers.push(data);
+    });
+  };   
+
+   $scope.getAll = function() {
+    return $http.get('/getusers').success(function(data){
+      angular.copy(data, $scope.getusers);
+    });
+  };
+  $scope.getAll();
+
+
     }
 ])
 .controller('createCtrl', [

@@ -86,6 +86,24 @@
 	    		</div>
 	    		<div class="col-md-9">
 	    			<!-- posts -->
+ 
+  				<ng-app="comment" ng-controller="MainCtrl">
+				
+				<form ng-submit="addComment()" style = "margin-top30px;">
+        			<input type="text" id="post" placeholder="Write a post" size=80px>
+        			<button type="submit">Post</button>
+     				</form>
+  				<div>
+    					{{test}}
+  				</div>	
+				<div ng-repeat="post in user.posts | orderBy: '-date'">
+        			{{post.body}} 
+     				 </div>
+		
+				
+
+
+
 	    		</div>
 	    	</div>
 	    </div>
@@ -110,6 +128,7 @@
 		                <p><input type="text" ng-model="profileImg" placeholder="Image URL"></input></p>
 		                <p><input type="text" ng-model="interests" placeholder="About Yourself"></input></p>
 				        <button type="submit" class="btn btn-success btn-lg">Create</button>
+					
 				    </form>
 				</div>
 			</div>
