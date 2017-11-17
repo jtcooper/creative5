@@ -1,4 +1,9 @@
 # creative5
+
+Github link: https://github.com/jtcooper/creative5
+
+Website link: http://54.193.77.79:3002
+
 Implement:
 
 Login to a user to make posts and profile changes
