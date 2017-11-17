@@ -56,10 +56,17 @@ router.post('/getusers', function(req, res) {
 });
 
 router.put('/getusers/:user/post', function(req, res, next) {
-	req.user.newPost(req.body, function(err, user){
-	    if (err) { return next(err); }
-	    res.json(user);
-  	});
+	console.log(req.body);
+	req.user.newPost(req.body, function(err, user) {
+		if (err) { return next(err); }
+		console.log('successfully added post');
+    	res.json(user);
+	});
+
+	// req.user.newPost(/*req.body, */function(err, user){
+	//     if (err) { return next(err); }
+	//     res.json(user);
+ //  	});
 })
 
 router.delete('/getusers/:user', function(req, res) {

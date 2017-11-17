@@ -7,7 +7,7 @@
 	<link href="style.css" rel="stylesheet" type="text/css"></link>
 	<script src="javascripts/app.js"></script>
 	<meta charset="utf-8">
-	<title>Creative 4</title>
+	<title>Creative 5</title>
 </head>
 <body ng-app="app" ng-controller="mainCtrl">
 
@@ -22,34 +22,20 @@
 			        	<h1>Welcome to Creative Lab</h1>
 					    <h3>Your favorite social media platform</h3>
 					</div>
-					<div class="col-md-4 text-right" >
+					<div class="col-md-4 text-right">
 						<span ng-show="currentUser === undefined">
 							<input type="text" ng-model="username" placeholder="Username">
 							<button class="btn" ng-click="login()">Login</button>
+							<a class="btn btn-default" href="#/create">New User</a>
 						</span>
 						<span ng-show="currentUser !== undefined">
 							<span>Logged in as {{ users[currentUser].name }}</span>
 							<button class="btn" ng-click="logout()">Logout</button>
 						</span>
-						<a class="btn btn-default" href="#/create">New User</a>
 					</div>
 				</div>
 	      	</div>
 	  		<div class="col-md-10 col-md-offset-1">
-	  			<!-- <div class="jumbotron">
-	  				<h2>Create User</h2>
-	  				<br>
-				    <form ng-submit="createUser()">
-		                <p><input type="text" ng-model="name" placeholder="Username"></input></p>
-				        <p>
-				        	Background color <input type="color" ng-model="bgColor"></input>
-				        </p>
-		                <p><input type="text" ng-model="profileImg" placeholder="Image URL"></input></p>
-		                <p><input type="text" ng-model="interests" placeholder="About Yourself"></input></p>
-				        <button type="submit" class="btn btn-success btn-lg">Create</button>
-				    </form>
-				</div> -->
-
 				<h1>Users</h1>
 			    <div ng-repeat="user in users">
 			    	<div class="alert row" style="background-color:{{user.bgColor}}">
@@ -74,7 +60,24 @@
 	    <div class="container-fluid">
 	    	<div class="row" style="background-color:{{user.bgColor}};padding:10px">
 	    		<br><br><br><br>
-	    		<a class="btn btn-default" href="#/home">Back</a>
+	    		<div class="row">
+	    			<div class="col-md-8">
+	    				<a class="btn btn-default" href="#/home">Back</a>
+	    			</div>
+		    		<div class="col-md-4 text-right">
+						<span ng-show="currentUser === undefined">
+							<input type="text" ng-model="username" placeholder="Username">
+							<button class="btn" ng-click="login()">Login</button>
+							<a class="btn btn-default" href="#/create">New User</a>
+						</span>
+						<span ng-show="currentUser !== undefined">
+							<span>Logged in as {{ users[currentUser].name }}</span>
+							<button class="btn" ng-click="logout()">Logout</button>
+						</span>
+						<span ng-show="currentUser === users.indexOf(user)">
+							<button class="btn btn-danger" ng-click="delete()">Delete User</button>
+					</div>
+				</div>
 	    	</div>
 	    	<br>
 	    	<div class="row">
@@ -86,24 +89,18 @@
 	    		</div>
 	    		<div class="col-md-9">
 	    			<!-- posts -->
- 
-  				<ng-app="comment" ng-controller="MainCtrl">
-				
-				<form ng-submit="addComment()" style = "margin-top30px;">
-        			<input type="text" id="post" placeholder="Write a post" size=80px>
-        			<button type="submit">Post</button>
-     				</form>
-  				<div>
-    					{{test}}
-  				</div>	
-				<div ng-repeat="post in user.posts | orderBy: '-date'">
-        			{{post.body}} 
-     				 </div>
-		
-				
-
-
-
+	    			<div ng-show="currentUser === users.indexOf(user)">
+						<form ng-submit="addComment()" style = "margin-top30px;">
+		        			<input type="text" ng-model="newComment" placeholder="Write a post" size=80px>
+		        			<button type="submit">Post</button>
+		     			</form>
+		     		</div>
+					<!-- <div ng-repeat="post in user.posts | orderBy: '-date'"> -->
+					<h2>Posts</h2>
+					<br>
+					<div class="well" ng-repeat="post in user.posts | orderBy : users.posts.indexOf(post) : true ">
+	        			{{post}}
+	     			</div>
 	    		</div>
 	    	</div>
 	    </div>
@@ -133,12 +130,6 @@
 				</div>
 			</div>
   	</script>
-
-	<script>
-		function goBack() {
-		    window.history.back();
-		}
-	</script>
 
 </body>
 </html>
